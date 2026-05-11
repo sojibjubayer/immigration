@@ -1,3 +1,7 @@
+"use client";
+
+import React from "react";
+import { motion, Variants } from "framer-motion";
 import {
   BellRing,
   BriefcaseBusiness,
@@ -7,135 +11,176 @@ import {
   ShieldCheck,
   TrendingUp,
   Users2,
+  LucideIcon
 } from "lucide-react";
 
-const benefits = [
+// --- Types ---
+interface Benefit {
+  title: string;
+  desc: string;
+  icon: LucideIcon;
+}
+
+// --- Data ---
+const benefits: Benefit[] = [
   {
     title: "Save Staff Time",
-    desc: "Keep visa information, leads, clients, appointments, and payments organized in one CRM instead of using many spreadsheets.",
+    desc: "Keep visa information, leads, clients, and payments organized in one CRM instead of messy spreadsheets.",
     icon: Clock,
   },
   {
     title: "Reduce Missed Follow-ups",
-    desc: "Track reminders for leads, documents, payments, appointments, and client updates so your team never forgets important actions.",
+    desc: "Track reminders for leads and documents so your team never forgets an important client action.",
     icon: BellRing,
   },
   {
-    title: "Improve Consultant Accuracy",
-    desc: "Consultants can quickly check countrywise visa requirements, documents, process steps, and important notes during consultation.",
+    title: "Improve Accuracy",
+    desc: "Consultants can quickly check country-specific visa requirements and process steps during consultation.",
     icon: FileCheck2,
   },
   {
-    title: "Manage Leads Professionally",
-    desc: "Record every inquiry from WhatsApp, calls, social media, website, or walk-in visitors and track them until conversion.",
+    title: "Manage Leads",
+    desc: "Record every inquiry from WhatsApp, calls, or social media and track them until conversion.",
     icon: TrendingUp,
   },
   {
-    title: "Organize Client Records",
-    desc: "Store client information, interested country, visa type, application status, remarks, and assigned staff in one place.",
+    title: "Organize Records",
+    desc: "Store client information, application status, and remarks in one centralized, secure place.",
     icon: Users2,
   },
   {
-    title: "Track Payments Clearly",
-    desc: "Manage service fees, paid amounts, due amounts, payment status, receipt details, and payment history easily.",
+    title: "Track Payments",
+    desc: "Manage service fees, paid amounts, and payment history with automated receipt details.",
     icon: ShieldCheck,
   },
 ];
 
-const highlights = [
+const highlights: string[] = [
   "Less manual paperwork",
   "Better staff coordination",
   "Clear client communication",
   "Faster daily operation",
 ];
 
+// --- Animation Variants ---
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.5, ease: "easeOut" } 
+  },
+};
+
 export default function BenefitsSection() {
   return (
     <section
       id="benefits"
-      className="relative overflow-hidden bg-white px-4 py-24 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-slate-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
     >
-      <div className="pointer-events-none absolute left-0 top-0 h-80 w-80 rounded-full bg-primary-light/70 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-accent-light/70 blur-3xl" />
+      {/* Visual Background Accents */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.08),transparent_35%)]" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-125 w-125 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.05),transparent_70%)]" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          {/* Left Content */}
-          <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent-light px-4 py-2 text-sm font-black text-accent">
+        <div className="grid gap-16 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
+          
+          {/* Left Column: Typography & Impact */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
+          >
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-pink-100 bg-white px-4 py-2 text-sm font-bold text-pink-600 shadow-sm">
               <BriefcaseBusiness size={16} />
               CRM Benefits
             </div>
 
-            <h2 className="max-w-2xl text-3xl font-black leading-tight tracking-tight text-text-main sm:text-5xl">
-              Designed to make visa consultancy work faster, cleaner, and more
-              professional.
+            <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+              Professional tools for <span className="text-blue-600">Visa Experts.</span>
             </h2>
 
-            <p className="mt-6 max-w-xl text-base leading-8 text-text-muted sm:text-lg">
-              Immigration CRM helps your office reduce manual work, organize
-              client data, improve follow-ups, and give consultants quick access
-              to accurate visa information.
+            <p className="mt-6 text-lg leading-relaxed text-slate-600">
+              Our CRM helps your office reduce manual work, organize
+              client data, and gives consultants instant access to accurate visa protocols.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-10 grid gap-3 sm:grid-cols-2">
               {highlights.map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-3 rounded-2xl border border-border bg-background p-4"
+                  className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white/50 p-3 backdrop-blur-sm transition-all hover:border-blue-300"
                 >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-light text-primary">
-                    <CheckCircle2 size={18} />
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                    <CheckCircle2 size={14} />
                   </div>
-
-                  <p className="text-sm font-bold text-text-main">{item}</p>
+                  <span className="text-sm font-semibold text-slate-700">{item}</span>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 rounded-4xl border border-border bg-linear-to-br from-primary to-accent p-6 text-white shadow-xl shadow-primary/15">
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/70">
-                Business Impact
+            {/* Dark Impact Card */}
+            <div className="mt-12 rounded-[2.5rem] bg-slate-900 p-10 text-white shadow-2xl transition-transform hover:scale-[1.02]">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-pink-400">
+                Business Growth
               </p>
-
-              <h3 className="mt-3 text-2xl font-black">
-                More organized office. Better follow-up. Higher conversion.
+              <h3 className="mt-4 text-2xl font-bold leading-snug">
+                More organization. <br />Higher conversions.
               </h3>
-
-              <p className="mt-3 text-sm leading-7 text-white/75">
-                A structured CRM helps your team work with confidence and gives
-                your consultancy a more professional client management process.
+              <p className="mt-4 text-sm leading-relaxed text-slate-400">
+                Stop losing leads in spreadsheets. A structured process gives 
+                your consultancy the professional edge needed to win trust.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Benefits Grid */}
-          <div className="grid gap-5 sm:grid-cols-2">
+          {/* Right Column: Benefits Grid */}
+          <motion.div
+            className="grid gap-6 sm:grid-cols-2"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={containerVariants}
+          >
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
+              // Desktop staggered effect: shifts the second column down slightly
+              const desktopOffset = index % 2 !== 0 ? "lg:translate-y-10" : "";
 
               return (
-                <div
+                <motion.div
                   key={benefit.title}
-                  className={`rounded-4xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl ${
-                    index === 1 || index === 4 ? "sm:translate-y-8" : ""
-                  }`}
+                  variants={itemVariants}
+                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                  className={`group relative flex flex-col rounded-4xl border border-slate-200 bg-white p-8 shadow-sm transition-colors hover:border-blue-400 hover:shadow-xl ${desktopOffset}`}
                 >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-primary-light to-accent-light text-primary">
-                    <Icon size={26} />
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white group-hover:rotate-3">
+                    <Icon size={28} />
                   </div>
 
-                  <h3 className="text-xl font-black text-text-main">
+                  <h3 className="text-xl font-bold text-slate-900">
                     {benefit.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-text-muted">
+                  <p className="mt-4 text-sm leading-relaxed text-slate-500">
                     {benefit.desc}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

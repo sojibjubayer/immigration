@@ -23,9 +23,13 @@ const pricingFeatures = [
 const pricingCards = [
   {
     name: "Starter",
-    price: "Custom",
-    desc: "Best for small visa consultancy offices starting with organized lead and client management.",
-    badge: "For Small Offices",
+    price: "499",
+    currency: "QAR",
+    period: "/ month",
+    setup: "Setup from QAR 1,500",
+    desc: "For small visa consultancy offices that need lead, visitor, client, and follow-up management.",
+    badge: "Small Office",
+    users: "Up to 3 staff users",
     features: [
       "Lead management",
       "Visitor management",
@@ -36,10 +40,14 @@ const pricingCards = [
   },
   {
     name: "Professional",
-    price: "Custom",
-    desc: "Best for growing immigration offices that need complete CRM features and staff workflow.",
+    price: "899",
+    currency: "QAR",
+    period: "/ month",
+    setup: "Setup from QAR 2,500",
+    desc: "For growing immigration offices that need complete CRM workflow with staff and appointment management.",
     badge: "Most Popular",
     featured: true,
+    users: "Up to 8 staff users",
     features: [
       "Everything in Starter",
       "Visa information management",
@@ -51,9 +59,13 @@ const pricingCards = [
   },
   {
     name: "Enterprise",
-    price: "Custom",
-    desc: "Best for multi-branch agencies that need advanced setup, custom modules, and priority support.",
-    badge: "For Agencies",
+    price: "1,499+",
+    currency: "QAR",
+    period: "/ month",
+    setup: "Custom setup quotation",
+    desc: "For agencies that need custom modules, multi-branch setup, advanced reports, and priority support.",
+    badge: "Agency Plan",
+    users: "Unlimited / custom users",
     features: [
       "Everything in Professional",
       "Custom module setup",
@@ -68,106 +80,124 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
-      className="relative overflow-hidden bg-background px-4 py-24 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-slate-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
     >
-      <div className="pointer-events-none absolute -left-35 top-10 h-80 w-80 rounded-full bg-accent-light/80 blur-3xl" />
-      <div className="pointer-events-none absolute -right-35 bottom-10 h-80 w-80 rounded-full bg-primary-light/80 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.06),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(236,72,153,0.08),transparent_38%)]" />
+
+      <div className="pointer-events-none absolute -left-32 top-10 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 bottom-10 h-80 w-80 rounded-full bg-pink-500/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
-        {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-4 py-2 text-sm font-black text-primary shadow-sm">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-1.5 text-sm font-bold text-blue-600 shadow-sm">
             <CreditCard size={16} />
-            Flexible Pricing
+            Qatar Market Pricing
           </div>
 
-          <h2 className="text-3xl font-black leading-tight tracking-tight text-text-main sm:text-5xl">
-            Choose a CRM plan based on your consultancy size and workflow.
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+            Simple CRM pricing for immigration consultancy offices in Qatar.
           </h2>
 
-          <p className="mt-6 text-base leading-8 text-text-muted sm:text-lg">
-            Immigration CRM pricing can be customized based on your office size,
-            number of staff, required modules, and support needs.
+          <p className="mt-6 text-lg leading-relaxed text-slate-600">
+            Choose a monthly package based on your office size, staff users,
+            required modules, and support needs.
           </p>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+        <div className="mt-16 grid gap-8 lg:grid-cols-3">
           {pricingCards.map((plan) => (
             <div
               key={plan.name}
-              className={`relative rounded-4xl border p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl ${
+              className={`group relative flex h-full flex-col rounded-3xl border p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                 plan.featured
-                  ? "border-primary bg-linear-to-br from-primary to-accent text-white shadow-primary/20"
-                  : "border-border bg-white text-text-main"
+                  ? "border-blue-600 bg-slate-900 text-white shadow-xl"
+                  : "border-slate-200 bg-white text-slate-900 hover:border-blue-200"
               }`}
             >
               {plan.featured && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-white px-5 py-2 text-xs font-black uppercase tracking-wide text-primary shadow-lg">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-linear-to-r from-blue-600 to-pink-500 px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
                   Recommended
                 </div>
               )}
 
               <div
-                className={`mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-black ${
+                className={`inline-flex w-fit items-center gap-2 rounded-lg px-3 py-1 text-xs font-bold uppercase tracking-wide ${
                   plan.featured
-                    ? "bg-white/20 text-white"
-                    : "bg-primary-light text-primary"
+                    ? "bg-white/10 text-blue-200"
+                    : "bg-blue-50 text-blue-600"
                 }`}
               >
-                <Sparkles size={16} />
+                <Sparkles size={14} />
                 {plan.badge}
               </div>
 
-              <h3 className="text-2xl font-black">{plan.name}</h3>
+              <h3 className="mt-5 text-2xl font-bold">{plan.name}</h3>
 
-              <div className="mt-4 flex items-end gap-2">
-                <p className="text-5xl font-black">{plan.price}</p>
+              <p
+                className={`mt-1 text-sm font-medium ${
+                  plan.featured ? "text-slate-400" : "text-slate-500"
+                }`}
+              >
+                {plan.users}
+              </p>
+
+              <div className="mt-6">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-sm font-bold uppercase">
+                    {plan.currency}
+                  </span>
+
+                  <span className="text-5xl font-extrabold tracking-tight">
+                    {plan.price}
+                  </span>
+
+                  <span
+                    className={`text-sm font-medium ${
+                      plan.featured ? "text-slate-400" : "text-slate-500"
+                    }`}
+                  >
+                    {plan.period}
+                  </span>
+                </div>
+
                 <p
-                  className={`pb-2 text-sm font-bold ${
-                    plan.featured ? "text-white/70" : "text-text-muted"
+                  className={`mt-2 text-sm font-bold ${
+                    plan.featured ? "text-pink-300" : "text-blue-600"
                   }`}
                 >
-                  pricing
+                  {plan.setup}
                 </p>
               </div>
 
               <p
-                className={`mt-5 text-sm leading-7 ${
-                  plan.featured ? "text-white/75" : "text-text-muted"
+                className={`mt-6 text-sm leading-relaxed ${
+                  plan.featured ? "text-slate-300" : "text-slate-600"
                 }`}
               >
                 {plan.desc}
               </p>
 
-              <div className="mt-8 space-y-4">
+              <div className="mt-8 flex flex-1 flex-col gap-4">
                 {plan.features.map((feature) => (
-                  <div key={feature} className="flex gap-3">
+                  <div key={feature} className="flex items-start gap-3">
                     <CheckCircle2
-                      size={20}
-                      className={
-                        plan.featured
-                          ? "mt-0.5 shrink-0 text-white"
-                          : "mt-0.5 shrink-0 text-primary"
-                      }
-                    />
-                    <p
-                      className={`text-sm font-bold ${
-                        plan.featured ? "text-white" : "text-text-main"
+                      size={18}
+                      className={`mt-0.5 shrink-0 ${
+                        plan.featured ? "text-pink-300" : "text-blue-600"
                       }`}
-                    >
-                      {feature}
-                    </p>
+                    />
+
+                    <span className="text-sm font-medium">{feature}</span>
                   </div>
                 ))}
               </div>
 
               <Link
                 href="#request-demo"
-                className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-sm font-black transition ${
+                className={`mt-auto flex w-full items-center justify-center rounded-xl px-6 py-4 text-sm font-bold transition-all duration-200 ${
                   plan.featured
-                    ? "bg-white text-primary hover:bg-primary-light"
-                    : "bg-primary text-white hover:bg-primary-dark"
+                    ? "bg-white text-slate-950 hover:bg-pink-50"
+                    : "bg-linear-to-r from-blue-600 to-pink-500 text-white shadow-lg shadow-pink-500/20 hover:scale-[1.02]"
                 }`}
               >
                 Request Demo
@@ -176,47 +206,48 @@ export default function PricingSection() {
           ))}
         </div>
 
-        {/* Included Features */}
-        <div className="mt-16 rounded-[2.5rem] border border-border bg-white p-6 shadow-xl shadow-slate-200/70 lg:p-8">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <div className="mt-20 rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-sm lg:p-12">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-primary-light to-accent-light text-primary">
-                <ShieldCheck size={28} />
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-blue-100 to-pink-100 text-blue-600">
+                <ShieldCheck size={32} />
               </div>
 
-              <h3 className="text-3xl font-black leading-tight text-text-main">
-                Every plan can be customized for your office.
+              <h3 className="text-3xl font-bold tracking-tight text-slate-900">
+                Fully customizable for your specific workflow.
               </h3>
 
-              <p className="mt-4 text-sm leading-7 text-text-muted">
-                You can start with the most important modules first and add more
-                features later as your consultancy grows.
+              <p className="mt-4 text-lg text-slate-600">
+                Start with core modules and expand as your team grows. We tailor
+                the platform to match how your office actually operates.
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
               {pricingFeatures.map((feature) => (
                 <div
                   key={feature}
-                  className="flex items-center gap-3 rounded-2xl border border-border bg-background p-4"
+                  className="flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50/70 p-4 transition-colors hover:border-blue-200"
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-light text-accent">
-                    <BadgeCheck size={18} />
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-blue-600 shadow-sm">
+                    <BadgeCheck size={16} />
                   </div>
 
-                  <p className="text-sm font-bold text-text-main">{feature}</p>
+                  <span className="text-sm font-semibold text-slate-700">
+                    {feature}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Pricing Note */}
-        <div className="mx-auto mt-10 max-w-3xl text-center">
-          <p className="text-sm leading-7 text-text-muted">
-            Pricing depends on setup, customization, number of staff users,
-            modules, hosting, and support requirements. Request a demo to get a
-            suitable package for your consultancy.
+        <div className="mx-auto mt-12 max-w-3xl text-center">
+          <p className="text-sm leading-relaxed text-slate-500">
+            *Pricing indicated is for standard SaaS subscriptions. Final
+            investment may vary based on on-premise hosting, data migration,
+            WhatsApp API integration, custom reporting, and support
+            requirements.
           </p>
         </div>
       </div>

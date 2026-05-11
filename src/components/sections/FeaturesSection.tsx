@@ -66,24 +66,26 @@ export default function FeaturesSection() {
   return (
     <section
       id="features"
-      className="relative overflow-hidden bg-background px-4 py-24 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-(--background) px-4 py-24 sm:px-6 lg:px-8"
     >
-      <div className="pointer-events-none absolute -left-30 top-20 h-80 w-80 rounded-full bg-primary-light/80 blur-3xl" />
-      <div className="pointer-events-none absolute -right-40 bottom-20 h-80 w-80 rounded-full bg-accent-light/80 blur-3xl" />
+      {/* Premium Background */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.10),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(236,72,153,0.10),transparent_32%)]" />
+      <div className="pointer-events-none absolute -left-32 top-20 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-40 bottom-20 h-80 w-80 rounded-full bg-pink-500/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-4 py-2 text-sm font-black text-primary shadow-sm">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-4 py-2 text-sm font-black text-blue-600 shadow-sm backdrop-blur-xl">
             <LayoutDashboard size={16} />
             CRM Features
           </div>
 
-          <h2 className="text-3xl font-black leading-tight tracking-tight text-text-main sm:text-5xl">
+          <h2 className="text-3xl font-black leading-tight tracking-tight text-(--text-main) sm:text-5xl">
             Everything your immigration consultancy needs in one organized CRM.
           </h2>
 
-          <p className="mt-6 text-base leading-8 text-text-muted sm:text-lg">
+          <p className="mt-6 text-base leading-8 text-(--text-muted) sm:text-lg">
             Immigration CRM gives your team the tools to manage visa
             information, leads, visitors, clients, appointments, payments, and
             staff with a clean and professional workflow.
@@ -98,17 +100,17 @@ export default function FeaturesSection() {
             return (
               <div
                 key={feature.title}
-                className="group rounded-4xl border border-border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
+                className="group rounded-4xl border border-white/40 bg-white/80 p-6 shadow-(--shadow-soft) backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-pink-200 hover:shadow-[0_20px_80px_rgba(236,72,153,0.12)]"
               >
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-primary-light to-accent-light text-primary transition group-hover:scale-105">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-blue-100 to-pink-100 text-blue-700 transition duration-300 group-hover:scale-105">
                   <Icon size={26} />
                 </div>
 
-                <h3 className="text-lg font-black text-text-main">
+                <h3 className="text-lg font-black text-(--text-main)">
                   {feature.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-text-muted">
+                <p className="mt-3 text-sm leading-7 text-(--text-muted)">
                   {feature.desc}
                 </p>
               </div>
@@ -117,9 +119,9 @@ export default function FeaturesSection() {
         </div>
 
         {/* Bottom Preview */}
-        <div className="mt-16 grid gap-8 rounded-[2.5rem] border border-border bg-white p-6 shadow-xl shadow-slate-200/70 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
-          <div className="rounded-4xl bg-linear-to-br from-primary to-accent p-8 text-white">
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur">
+        <div className="mt-16 grid gap-8 rounded-[2.5rem] border border-white/50 bg-white/80 p-6 shadow-[0_20px_80px_rgba(15,23,42,0.10)] backdrop-blur-xl lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
+          <div className="rounded-4xl bg-linear-to-br from-slate-950 via-blue-900 to-pink-600 p-8 text-white shadow-[0_20px_80px_rgba(37,99,235,0.22)]">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/15 backdrop-blur-xl">
               <MessageSquareText size={28} />
             </div>
 
@@ -142,17 +144,19 @@ export default function FeaturesSection() {
             {previewItems.map((item, index) => (
               <div
                 key={item}
-                className={`rounded-3xl border border-border bg-background p-5 ${
+                className={`rounded-3xl border border-white/50 bg-white/70 p-5 shadow-sm backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(37,99,235,0.10)] ${
                   index === 4 ? "sm:col-span-2" : ""
                 }`}
               >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary-light text-primary">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-blue-100 to-pink-100 text-blue-700">
                   <BadgeCheck size={18} />
                 </div>
 
-                <p className="text-base font-black text-text-main">{item}</p>
+                <p className="text-base font-black text-(--text-main)">
+                  {item}
+                </p>
 
-                <p className="mt-2 text-sm leading-6 text-text-muted">
+                <p className="mt-2 text-sm leading-6 text-(--text-muted)">
                   Keep your consultancy operation structured, searchable, and
                   easy to manage.
                 </p>
